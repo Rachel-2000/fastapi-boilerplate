@@ -24,8 +24,7 @@ class User(Base, TimestampMixin):
     name: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     events: Mapped[List[Event]] = relationship(
         secondary=event_user_association_table,
-        back_populates="invitees",
-        cascade="all, delete")
+        back_populates="invitees")
     password: Mapped[str] = mapped_column(String(255), nullable=False)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     nickname: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)

@@ -37,8 +37,7 @@ class Event(Base, TimestampMixin):
     # # Define a relationship to the User entity for invitees
     invitees: Mapped[List["User"]] = relationship(
         secondary=event_user_association_table,
-        back_populates="events",
-        cascade="all, delete")
+        back_populates="events")
 
     @classmethod
     def create(
