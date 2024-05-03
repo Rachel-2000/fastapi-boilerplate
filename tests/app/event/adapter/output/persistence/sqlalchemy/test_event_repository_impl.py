@@ -176,7 +176,7 @@ async def test_merge_all_overlapping_events(session: AsyncSession):
     assert merged_events[0].startTime == datetime(2024, 1, 1, 10, 0, 0)
     assert merged_events[0].endTime == datetime(2024, 1, 1, 12, 0, 0)
 
-    await session.delete(event_1)
-    await session.delete(event_2)
-    await session.delete(user_1)
-    await session.commit()
+    # await session.delete(event_1)
+    # await session.delete(event_2)
+    # await session.delete(user_1)
+    # await session.commit()

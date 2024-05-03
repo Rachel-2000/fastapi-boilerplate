@@ -181,8 +181,8 @@ async def test_update_event(session: AsyncSession):
     user_1 = make_user(
         id=100,
         password="password",
-        email="a@b.c",
-        nickname="hide",
+        email="abc@edu.com",
+        nickname="kitty",
         is_admin=True,
         lat=37.123,
         lng=127.123,
