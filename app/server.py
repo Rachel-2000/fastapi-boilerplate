@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 from app.auth.adapter.input.api import router as auth_router
 from app.container import Container
 from app.user.adapter.input.api import router as user_router
+from app.event.adapter.input.api import router as event_router
 from core.config import config
 from core.exceptions import CustomException
 from core.fastapi.dependencies import Logging
@@ -22,8 +23,10 @@ def init_routers(app_: FastAPI) -> None:
     container = Container()
     user_router.container = container
     auth_router.container = container
+    event_router.container = container
     app_.include_router(user_router)
     app_.include_router(auth_router)
+    app_.include_router(event_router)
 
 
 def init_listeners(app_: FastAPI) -> None:
@@ -90,3 +93,7 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
+
+@app.get('/')
+async def root():
+    return {"message": "Hello World"}

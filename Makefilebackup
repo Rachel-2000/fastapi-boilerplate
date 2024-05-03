@@ -3,4 +3,4 @@ cov:
 	coverage html
 
 test:
-	set ENV=test&& pytest tests -s
+	ENV=test pytest tests -s

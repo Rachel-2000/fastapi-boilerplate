@@ -1,5 +1,11 @@
 from pydantic import BaseModel, Field
-
+from typing import List
+# from app.event.application.dto import EventDTO
+#
+# class UserDTO(BaseModel):
+#     id: int = Field(..., description="ID")
+#     name: str = Field(..., description="Username")
+#     events: List[EventDTO] = Field(..., description="Eventlist")
 
 class GetUserListResponseDTO(BaseModel):
     id: int = Field(..., description="ID")
