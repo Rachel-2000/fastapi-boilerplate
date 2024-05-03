@@ -70,8 +70,35 @@ This feature enhances the existing project structure to manage a collection of e
 ## Run
 
 ### Launch docker
+The containers include Redis and MySQL
 ```shell
 > docker-compose -f docker/docker-compose.yml up
+```
+
+### Add database table
+Enter the MYSQL databse and add the event table and association table by
+```sql
+USE fastapi;
+
+CREATE TABLE event (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    status ENUM('TODO', 'IN_PROGRESS', 'COMPLETED') NOT NULL,
+    startTime DATETIME NOT NULL,
+    endTime DATETIME NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE event_user_association (
+    event_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    PRIMARY KEY (event_id, user_id),
+    FOREIGN KEY (event_id) REFERENCES event (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
+);
 ```
 
 ### Install dependency
@@ -109,3 +136,4 @@ then run
 ```shell
 > make test
 ```
+Notice that you also need to add event table and association table in the **fastapi_test** database
