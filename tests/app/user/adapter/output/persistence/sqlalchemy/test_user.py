@@ -7,7 +7,7 @@ from app.user.domain.entity.user import User
 from app.user.domain.repository.user import UserRepo
 from tests.support.user_fixture import make_user
 
-# user_repo = UserSQLAlchemyRepo()
+user_repo = UserSQLAlchemyRepo()
 
 
 # @pytest.mark.asyncio
@@ -53,6 +53,10 @@ from tests.support.user_fixture import make_user
 #     assert saved_user_2.location.lat == user_2.location.lat
 #     assert saved_user_2.location.lng == user_2.location.lng
 #
+#     # await session.delete(user_1)
+#     # await session.delete(user_2)
+#     # await session.commit()
+#
 #
 # @pytest.mark.asyncio
 # async def test_get_user_by_email_or_nickname(session: AsyncSession):
@@ -78,6 +82,9 @@ from tests.support.user_fixture import make_user
 #     assert sut.id == user.id
 #     assert sut.email == email
 #     assert sut.nickname == nickname
+#
+#     # await session.delete(user)
+#     # await session.commit()
 #
 #
 # @pytest.mark.asyncio
@@ -117,20 +124,23 @@ from tests.support.user_fixture import make_user
 #     assert sut.email == email
 #     assert sut.password == password
 #
-#
-# @pytest.mark.asyncio
-# async def test_save(session: AsyncSession):
-#     # Given
-#     email = "b@c.d"
-#     password = "hide"
-#     user = make_user(
-#         password=password,
-#         email=email,
-#         nickname="hide",
-#         is_admin=False,
-#         lat=37.123,
-#         lng=127.123,
-#     )
-#
-#     # When, Then
-#     await user_repo.save(user=user)
+#     # await session.delete(user)
+#     # await session.commit()
+
+
+@pytest.mark.asyncio
+async def test_save(session: AsyncSession):
+    # Given
+    email = "b@c.d"
+    password = "hide"
+    user = make_user(
+        password=password,
+        email=email,
+        nickname="hide",
+        is_admin=False,
+        lat=37.123,
+        lng=127.123,
+    )
+
+    # When, Then
+    await user_repo.save(user=user)

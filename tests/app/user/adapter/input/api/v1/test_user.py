@@ -40,6 +40,9 @@ BASE_URL = "http://test"
 #     assert len(sut) == 1
 #     assert sut[0] == {"id": 1, "email": "a@b.c", "nickname": "hide"}
 #
+#     # await session.delete(user)
+#     # await session.commit()
+#
 #
 # @pytest.mark.asyncio
 # async def test_create_user_password_does_not_match(session: AsyncSession):
@@ -99,6 +102,9 @@ BASE_URL = "http://test"
 #         "error_code": exc.error_code,
 #         "message": exc.message,
 #     }
+#
+#     # await session.delete(user)
+#     # await session.commit()
 #
 #
 # @pytest.mark.asyncio
@@ -175,3 +181,6 @@ BASE_URL = "http://test"
 #     sut = response.json()
 #     assert "token" in sut
 #     assert "refresh_token" in sut
+#
+#     # await session.delete(user)
+#     # await session.commit()
