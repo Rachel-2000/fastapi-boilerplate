@@ -3,6 +3,7 @@ from uuid import uuid4
 
 import pytest
 import pytest_asyncio
+from sqlalchemy import text
 
 from core.db.session import (
     set_session_context,
@@ -34,4 +35,9 @@ async def session():
     test_db_coordinator.apply_alembic()
     yield db_session
     await db_session.remove()
-    test_db_coordinator.truncate_all()
+    # test_db_coordinator.truncate_all()
+    await db_session.execute(text("DELETE FROM event_user_association"))
+    await db_session.execute(text("DELETE FROM user"))
+    await db_session.execute(text("DELETE FROM event"))
+    await db_session.commit()
+
